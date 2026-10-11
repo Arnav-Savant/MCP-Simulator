@@ -1,0 +1,16 @@
+COMPONENT_META = {
+    "user": {"title": "User", "implementation": "conceptual",
+             "responsibility": "Chooses a predefined scenario. Not part of MCP."},
+    "host": {"title": "MCP Host", "implementation": "real",
+             "responsibility": "Application-level orchestration: follows the scenario plan, supplies discovered tools to the simulated LLM, applies execution policy, and asks the MCP client to act. It never calls tool handlers directly."},
+    "llm": {"title": "Simulated LLM", "implementation": "simulated",
+            "responsibility": "Deterministic scripted stand-in for a model. It reads the real discovered tool metadata and returns scripted tool-call proposals or final text. NOT actual LLM inference."},
+    "client": {"title": "MCP Client", "implementation": "real",
+               "responsibility": "Wraps the official SDK Client: connects, discovers tools, issues tools/call, turns protocol responses and errors into structured results for the host."},
+    "transport": {"title": "Transport (stdio)", "implementation": "real",
+                  "responsibility": "Carries JSON-RPC messages over the server subprocess's stdin/stdout. A tap records every raw message in both directions. Latency shown here is measured."},
+    "server": {"title": "MCP Server", "implementation": "real",
+               "responsibility": "Official SDK MCPServer: owns the tool registry, validates arguments against input schemas, dispatches to handlers, and returns results or protocol errors."},
+    "tool": {"title": "Tool Handler", "implementation": "real",
+             "responsibility": "Deterministic local functions registered on the server. The only place tools are defined."},
+}

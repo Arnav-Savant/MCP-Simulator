@@ -1,0 +1,5 @@
+mcp==2.3.0            # official MCP Python SDK (spec 2026-07-28 + legacy handshake eras)
+fastapi==0.143.0
+uvicorn==0.54.0
+sse-starlette==3.5.0  # Server-Sent Events for the execution trace stream
+pydantic==2.14.0
